@@ -1,0 +1,11 @@
+// ReVIEWのコメントを入力するマクロ
+//  Copyright 2008 Kenshi Muto <kmuto@debian.org>
+//
+// マクロを実行すると、コメントを入力するボックスができます。
+
+title "コメント入力";
+$s = input("コメント");
+
+if ($s == "") { beep; endmacro; }
+insert "◆→" + $s + " -編集者←◆";
+endmacro;

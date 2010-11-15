@@ -1,0 +1,41 @@
+// ReVIEWのフォントを入力するマクロ
+//  Copyright 2008 Kenshi Muto <kmuto@debian.org>
+//
+// マクロを実行すると、適用するフォントの種類を1文字で指定するようタイトルバーに表示されます。
+// 範囲指定している場合はその範囲に適用され、そうでない場合は単純に挿入されて入力待ちになります。
+
+title "フォント設定";
+$c = char(inputchar("[フォント] k:キーワード b:ボールド i:イタリック t:等幅 a:吹き出し d:索引 h:隠し索引"));
+
+$font = "";
+if ($c == "k") { $font = "kw"; }
+if ($c == "b") { $font = "b"; }
+if ($c == "i") { $font = "i"; }
+if ($c == "t") { $font = "tt"; }
+if ($c == "a") { $font = "balloon"; }
+if ($c == "d") { $font = "idx"; }
+if ($c == "h") { $font = "hidx"; }
+
+if ($font == "") { beep; endmacro; }
+
+disableinvert;
+
+if (selecting) {
+  // 範囲選択あり
+  #tx = seltopx;
+  #ty = seltopy;
+  #ex = selendx;
+  #ey = selendy;
+  escape; // 範囲選択解除
+  moveto #ex, #ey;
+  insert "}";
+  moveto #tx, #ty;
+  insert "@<" + $font + ">{";
+} else {
+  // 範囲選択なし
+  insert "@<" + $font + ">{";
+  insertfix "}";
+}
+
+enableinvert;
+endmacro;

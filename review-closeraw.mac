@@ -1,0 +1,14 @@
+// ReVIEWのXML閉じタグを入力するマクロ
+//  Copyright 2008 Kenshi Muto <kmuto@debian.org>
+//
+// マクロを実行すると、タグ名を尋ねられます。
+
+title "閉じタグ設定";
+$s = input("閉じタグ名");
+
+
+if ($s == "") { beep; endmacro; }
+
+insert "//raw[</" + $s + ">]\n";
+
+endmacro;

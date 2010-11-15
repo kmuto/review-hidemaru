@@ -1,0 +1,25 @@
+// ReVIEWのヘッダを入力するマクロ
+//  Copyright 2008 Kenshi Muto <kmuto@debian.org>
+//
+// マクロを実行すると、ヘッダレベルを尋ねられます。
+
+title "ヘッダ設定";
+$c = char(inputchar("[ヘッダ] 1～5"));
+
+#h = 0;
+if ($c == "1") { #h = 1; }
+if ($c == "2") { #h = 2; }
+if ($c == "3") { #h = 3; }
+if ($c == "4") { #h = 4; }
+if ($c == "5") { #h = 5; }
+
+if (#h == 0) { beep; endmacro; }
+
+#i = 0;
+while (#i < #h) {
+  insert "=";
+  #i = #i + 1;
+}
+insert " ";
+
+endmacro;

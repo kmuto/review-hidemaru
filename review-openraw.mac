@@ -1,0 +1,14 @@
+// ReVIEWのXML開きタグを入力するマクロ
+//  Copyright 2008 Kenshi Muto <kmuto@debian.org>
+//
+// マクロを実行すると、タグ名を尋ねられます。
+
+title "開きタグ設定";
+$s = input("開きタグ名");
+
+
+if ($s == "") { beep; endmacro; }
+
+insert "//raw[<" + $s + ">]\n";
+
+endmacro;
